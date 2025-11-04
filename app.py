@@ -187,7 +187,6 @@ def build_dashboard(gdf, df2):
         st.subheader("Climate Risk Assessment Portal for Iloilo City")
         
         st.markdown("""
-        ### About KLIMATA
         Despite the abundance of climate data in the Philippines, there remains no unified or accessible system to compare and assess urban climate risks. This lack of standardized risk metrics leaves many cities unprepared for worsening climate impacts, such as flooding, heatwaves, and air pollution. Without clear, data-driven insights, local governments struggle to prioritize interventions and allocate resources effectively, increasing vulnerability for urban populations—especially in rapidly growing areas like Iloilo City.
                     
         This project addresses these issues by developing an web application that features a climate vulnerability index formulation per barangay, as well as different analyses on climate vulnerability. The climate vulnerability index uses datasets from PROJECT CCHAIN. The application is to generate an urban risk score for the 180 barangays of Iloilo City. The formulation of the scores is to integrate key indicators from various categories: climate, health, environmental and socio-economic variables.
