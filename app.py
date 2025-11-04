@@ -357,7 +357,7 @@ def build_dashboard(gdf, df2):
         st.header(f"Dashboard for: {selected_brgy}")
 
         col1, col2, col3 = st.columns(3)
-        col1.metric("Urban Risk Score", f"{brgy_data['urban_risk_index']:.2f}")
+        col1.metric("Climate Vulnerability Index", f"{brgy_data['urban_risk_index']:.2f}")
         col2.metric("Risk Level", brgy_data['risk_label'])
         col3.metric("Relative Wealth Index", f"{brgy_data['rwi_mean']:.2f}")
         style_metric_cards(**metric_style, box_shadow=True)
