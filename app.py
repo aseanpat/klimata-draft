@@ -242,7 +242,7 @@ def build_dashboard(gdf, df2):
         """
         st.markdown(city_overview_bg, unsafe_allow_html=True)
         
-        st.title("Iloilo City: Climate Vulnerability Index")
+        st.title(f"Iloilo City: {selected_layer}")
 
         metric_col = col_config["col"]
         color_scale = col_config["color"]
