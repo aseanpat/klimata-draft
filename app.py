@@ -396,8 +396,11 @@ def show_login_page():
     
     .block-container {{
         max-width: 480px !important;
-        padding-top: 8vh !important;
+        padding-top: 0 !important;
         margin: 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        min-height: 100vh !important;
     }}
     
     .main .block-container {{
@@ -527,8 +530,11 @@ def show_signup_page():
     
     .block-container {{
         max-width: 480px !important;
-        padding-top: 6vh !important;
+        padding-top: 0 !important;
         margin: 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        min-height: 100vh !important;
     }}
     
     .main .block-container {{
