@@ -128,7 +128,7 @@ def build_dashboard(gdf, df2):
     [data-testid="stHeader"] {background-color: #2d5016;}
     div[data-testid="stMetricValue"] {color: #a8d5a8 !important; font-size: 1.8rem !important; font-weight: 600 !important;}
     div[data-testid="stMetricLabel"] {color: #d4e8d4 !important; font-size: 1rem !important;}
-    section[data-testid="stSidebar"] {background: #2d5016; color: #FFFFFF;}
+    section[data-testid="stSidebar"] {background: #1f3a11; color: #FFFFFF;}
     h1, h2, h3 {color: #FFFFFF !important;}
     .stRadio > label {color: #FFFFFF !important; font-weight: 500 !important;}
     .stRadio > div {color: #FFFFFF !important;}
@@ -148,8 +148,8 @@ def build_dashboard(gdf, df2):
         st.markdown(f"### Welcome, {st.session_state.get('username','Guest')}")
         selected = option_menu(
             menu_title=None,
-            options=["City Overview", "Barangay Deep Dive", "Manage Account", "Log Out"],
-            icons=["tree-fill", "geo-alt-fill", "person-circle", "box-arrow-right"],
+            options=["Home", "City Overview", "Barangay Deep Dive", "Manage Account", "Log Out"],
+            icons=["house-fill", "tree-fill", "geo-alt-fill", "person-circle", "box-arrow-right"],
             menu_icon="globe-americas",
             default_index=0,
             styles={
@@ -170,29 +170,38 @@ def build_dashboard(gdf, df2):
         st.rerun()
 
     # =====================
-    # City Overview
+    # Home
     # =====================
-    if selected == "City Overview":
-        # Static background for City Overview
-        city_overview_bg = """
+    if selected == "Home":
+        home_bg = """
         <style>
         [data-testid="stAppViewContainer"] {
-            background: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)),
-                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-        }
-        [data-testid="stAppViewContainer"] h1 {
-            color: #FFFFFF !important;
+            background: #1a2e1a !important;
         }
         </style>
         """
-        st.markdown(city_overview_bg, unsafe_allow_html=True)
+        st.markdown(home_bg, unsafe_allow_html=True)
         
-        st.title("Iloilo City: Climate Vulnerability Index")
-
+        st.title("Welcome to KLIMATA")
+        st.subheader("Climate Risk Assessment Portal for Iloilo City")
+        
+        st.markdown("""
+        ### About KLIMATA
+        Despite the abundance of climate data in the Philippines, there remains no unified or accessible system to compare and assess urban climate risks. This lack of standardized risk metrics leaves many cities unprepared for worsening climate impacts, such as flooding, heatwaves, and air pollution. Without clear, data-driven insights, local governments struggle to prioritize interventions and allocate resources effectively, increasing vulnerability for urban populations—especially in rapidly growing areas like Iloilo City.
+                    
+        This project addresses these issues by developing an web application that features a climate vulnerability index formulation per barangay, as well as different analyses on climate vulnerability. The climate vulnerability index uses datasets from PROJECT CCHAIN. The application is to generate an urban risk score for the 180 barangays of Iloilo City. The formulation of the scores is to integrate key indicators from various categories: climate, health, environmental and socio-economic variables.
+        
+        ### Features
+        - **City Overview**: Explore city-wide climate risk metrics with interactive heat maps
+        - **Barangay Deep Dive**: Detailed analysis of individual barangays including amenity access
+        - **Multiple Risk Indicators**: Urban risk, population density, amenity index, and climate exposure
+        
+        """)
+    
+    # =====================
+    # City Overview
+    # =====================
+    elif selected == "City Overview":
         # Sidebar map selector
         selected_layer = st.sidebar.radio(
             "Select Map Layer",
@@ -200,13 +209,31 @@ def build_dashboard(gdf, df2):
         )
 
         layer_config = {
-            "Urban Risk": {"col": "urban_risk_index", "color": "YlOrRd", "legend": "Urban Risk Index"},
-            "Population": {"col": "pop_total", "color": "Blues", "legend": "Population Total"},
-            "Amenity": {"col": "infra_index", "color": "Reds", "legend": "Amenity Index"},
-            "Climate Exposure": {"col": "climate_exposure_score", "color": "Greens", "legend": "Climate Exposure Score"},
+            "Urban Risk": {"col": "urban_risk_index", "color": "YlOrRd", "legend": "Urban Risk Index", "bg": "#2d1810", "accent": "#d9534f"},
+            "Population": {"col": "pop_total", "color": "Blues", "legend": "Population Total", "bg": "#0f1e2e", "accent": "#5b9bd5"},
+            "Amenity": {"col": "infra_index", "color": "Reds", "legend": "Amenity Index", "bg": "#2e1010", "accent": "#e74c3c"},
+            "Climate Exposure": {"col": "climate_exposure_score", "color": "Greens", "legend": "Climate Exposure Score", "bg": "#1a2e1a", "accent": "#8abf8b"},
         }
-
+        
         col_config = layer_config[selected_layer]
+        theme_bg = col_config["bg"]
+        theme_accent = col_config["accent"]
+        
+        # Dynamic theme based on selected layer
+        city_overview_bg = f"""
+        <style>
+        [data-testid="stAppViewContainer"] {{
+            background: {theme_bg} !important;
+        }}
+        [data-testid="stAppViewContainer"] h1 {{
+            color: #FFFFFF !important;
+        }}
+        </style>
+        """
+        st.markdown(city_overview_bg, unsafe_allow_html=True)
+        
+        st.title("Iloilo City: Climate Vulnerability Index")
+
         metric_col = col_config["col"]
         color_scale = col_config["color"]
         legend_name = col_config["legend"]
@@ -216,7 +243,7 @@ def build_dashboard(gdf, df2):
         avg_wealth = gdf['rwi_mean'].mean()
 
         col1, col2, col3 = st.columns(3)
-        col1.metric("Average Urban Risk", f"{avg_risk:.2f}")
+        col1.metric("Climate Vulnerability Index", f"{avg_risk:.2f}")
         col2.metric("Average Infrastructure", f"{avg_infra:.2f}")
         col3.metric("Average Relative Wealth", f"{avg_wealth:.2f}")
         style_metric_cards(**metric_style, box_shadow=True)
@@ -343,13 +370,14 @@ def build_dashboard(gdf, df2):
         # --- Amenity Visualization ---
         st.subheader("Nearest Amenities Overview")
         
-        col_filter1, col_filter2 = st.columns(2)
-        with col_filter1:
-            start_date = st.date_input("Start Date", value=pd.to_datetime("2024-01-01"))
-        with col_filter2:
-            end_date = st.date_input("End Date", value=pd.to_datetime("2024-12-31"))
-        
-        brgy_amenities = df2[df2['barangay_name'] == selected_brgy]
+        if 'date' in df2.columns:
+            df2['date'] = pd.to_datetime(df2['date'], errors='coerce')
+            df2['year'] = df2['date'].dt.year
+            available_years = sorted(df2['year'].dropna().unique().astype(int))
+            selected_year = st.selectbox("Filter by Year", available_years, index=len(available_years)-1 if available_years else 0)
+            brgy_amenities = df2[(df2['barangay_name'] == selected_brgy) & (df2['year'] == selected_year)]
+        else:
+            brgy_amenities = df2[df2['barangay_name'] == selected_brgy]
 
         if not brgy_amenities.empty:
             amenity_cols = ['college_nearest', 'community_centre_nearest', 'school_nearest',
@@ -370,6 +398,7 @@ def build_dashboard(gdf, df2):
             fig.update_layout(xaxis_tickangle=-30)
             st.plotly_chart(fig, use_container_width=True)
 
+            amenity_data['Distance (km)'] = amenity_data['Distance (km)'].apply(lambda x: f"{x:.2f} km")
             st.dataframe(amenity_data)
         else:
             st.info("No amenity data available for this barangay.")
@@ -378,117 +407,101 @@ def build_dashboard(gdf, df2):
 # PAGE FUNCTIONS
 # ==========================
 def show_login_page():
-    """Login page with enhanced UI"""
+    """Login page with GitHub-inspired minimal design"""
     
     page_bg_img = """
     <style>
-    [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.8)),
-                    url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
+    [data-testid="stAppViewContainer"] {{
+        background: #0d1117;
+    }}
     
     [data-testid="stHeader"], [data-testid="stSidebar"] {{ display: none; }}
     
     .block-container {{
-        max-width: 480px !important;
-        padding-top: 8vh !important;
+        max-width: 340px !important;
+        padding: 0 !important;
         margin: 0 auto !important;
-    }}
-    
-    .main .block-container {{
-        max-width: 480px !important;
+        display: flex !important;
+        align-items: center !important;
+        min-height: 100vh !important;
     }}
     
     div[data-testid="stVerticalBlock"] > div:first-child {{
-        background: rgba(255, 255, 255, 0.12);
-        padding: 3.5rem 2.5rem;
-        border-radius: 24px;
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(138, 191, 139, 0.4);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(138, 191, 139, 0.15);
+        background: #161b22;
+        padding: 2rem;
+        border-radius: 6px;
+        border: 1px solid #30363d;
+        width: 100%;
     }}
     
     h1 {{
-        color: #FFFFFF !important;
+        color: #c9d1d9 !important;
         text-align: center;
-        text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
-        font-weight: 700;
-        font-size: 2rem !important;
-        margin-bottom: 0.5rem !important;
-        letter-spacing: 0.5px;
-    }}
-    
-    .subtitle {{
-        color: #C8E6C9;
-        text-align: center;
-        font-size: 0.95rem;
-        margin-bottom: 2rem;
-        text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+        font-weight: 300;
+        font-size: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        letter-spacing: -0.5px;
     }}
     
     label {{
-        color: #FFFFFF !important;
+        color: #c9d1d9 !important;
         font-weight: 600;
-        font-size: 0.95rem !important;
-        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+        font-size: 0.875rem !important;
         margin-bottom: 0.5rem !important;
     }}
     
     .stTextInput > div > div > input {{
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 12px;
-        border: 2px solid rgba(138, 191, 139, 0.6);
-        color: #1B5E20 !important;
-        padding: 0.75rem 1rem !important;
-        font-size: 1rem !important;
-        transition: all 0.3s ease;
+        background-color: #0d1117 !important;
+        border-radius: 6px;
+        border: 1px solid #30363d;
+        color: #c9d1d9 !important;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.875rem !important;
     }}
     
     .stTextInput > div > div > input:focus {{
-        border-color: #8abf8b !important;
-        box-shadow: 0 0 0 3px rgba(138, 191, 139, 0.2) !important;
+        border-color: #58a6ff !important;
+        box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3) !important;
+        outline: none !important;
     }}
     
     .stButton > button {{
         width: 100%;
-        background: linear-gradient(135deg, #8abf8b, #6fa870);
+        background: #238636;
         color: white;
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 1.05rem;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        box-shadow: 0 6px 20px rgba(138, 191, 139, 0.4);
-        transition: all 0.3s ease;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(240, 246, 252, 0.1);
         margin-top: 1rem;
     }}
     
     .stButton > button:hover {{
-        background: linear-gradient(135deg, #6fa870, #5a8f5b);
-        box-shadow: 0 8px 24px rgba(111, 168, 112, 0.5);
-        transform: translateY(-2px);
-    }}
-    
-    hr {{
-        border: none;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(138, 191, 139, 0.5), transparent);
-        margin: 2rem 0;
+        background: #2ea043;
     }}
     
     .stAlert {{
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 10px;
+        background-color: #161b22 !important;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        color: #c9d1d9 !important;
+    }}
+    
+    .signup-link {{
+        text-align: center;
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        color: #58a6ff;
+        font-size: 0.875rem;
     }}
     </style>
     """
     
     st.markdown(page_bg_img, unsafe_allow_html=True)
-    st.title("KLIMATA")
-    st.markdown('<p class="subtitle">Climate Risk Assessment Portal</p>', unsafe_allow_html=True)
+    st.title("Sign in to KLIMATA")
     
     with st.form("login_form"):
         username = st.text_input("Username", placeholder="Enter your username")
@@ -504,8 +517,8 @@ def show_login_page():
             else:
                 st.error("User not known or password incorrect")
 
-    st.markdown("---")
-    if st.button("Need an account? Sign Up"):
+    st.markdown('<div class="signup-link">New to KLIMATA?</div>', unsafe_allow_html=True)
+    if st.button("Create an account"):
         st.session_state.page = "Sign Up"
         st.rerun()
 
@@ -513,106 +526,97 @@ def show_login_page():
 def show_signup_page():
     page_bg_img = """
     <style>
-    [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.8)),
-                    url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
+    [data-testid="stAppViewContainer"] {{
+        background: #0d1117;
+    }}
     
     [data-testid="stHeader"], [data-testid="stSidebar"] {{ display: none; }}
     
     .block-container {{
-        max-width: 480px !important;
-        padding-top: 6vh !important;
+        max-width: 340px !important;
+        padding: 0 !important;
         margin: 0 auto !important;
-    }}
-    
-    .main .block-container {{
-        max-width: 480px !important;
+        display: flex !important;
+        align-items: center !important;
+        min-height: 100vh !important;
     }}
     
     div[data-testid="stVerticalBlock"] > div:first-child {{
-        background: rgba(255, 255, 255, 0.12);
-        padding: 3.5rem 2.5rem;
-        border-radius: 24px;
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(138, 191, 139, 0.4);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(138, 191, 139, 0.15);
+        background: #161b22;
+        padding: 2rem;
+        border-radius: 6px;
+        border: 1px solid #30363d;
+        width: 100%;
     }}
     
     h1 {{
-        color: #FFFFFF !important;
+        color: #c9d1d9 !important;
         text-align: center;
-        text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
-        font-weight: 700;
-        font-size: 1.9rem !important;
-        margin-bottom: 0.5rem !important;
-        letter-spacing: 0.5px;
-    }}
-    
-    .subtitle {{
-        color: #C8E6C9;
-        text-align: center;
-        font-size: 0.9rem;
-        margin-bottom: 2rem;
-        text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+        font-weight: 300;
+        font-size: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        letter-spacing: -0.5px;
     }}
     
     label {{
-        color: #FFFFFF !important;
+        color: #c9d1d9 !important;
         font-weight: 600;
-        font-size: 0.95rem !important;
-        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+        font-size: 0.875rem !important;
         margin-bottom: 0.5rem !important;
     }}
     
     .stTextInput > div > div > input {{
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 12px;
-        border: 2px solid rgba(138, 191, 139, 0.6);
-        color: #1B5E20 !important;
-        padding: 0.75rem 1rem !important;
-        font-size: 1rem !important;
-        transition: all 0.3s ease;
+        background-color: #0d1117 !important;
+        border-radius: 6px;
+        border: 1px solid #30363d;
+        color: #c9d1d9 !important;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.875rem !important;
     }}
     
     .stTextInput > div > div > input:focus {{
-        border-color: #8abf8b !important;
-        box-shadow: 0 0 0 3px rgba(138, 191, 139, 0.2) !important;
+        border-color: #58a6ff !important;
+        box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3) !important;
+        outline: none !important;
     }}
     
     .stButton > button {{
         width: 100%;
-        background: linear-gradient(135deg, #8abf8b, #6fa870);
+        background: #238636;
         color: white;
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 1.05rem;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        box-shadow: 0 6px 20px rgba(138, 191, 139, 0.4);
-        transition: all 0.3s ease;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(240, 246, 252, 0.1);
         margin-top: 1rem;
     }}
     
     .stButton > button:hover {{
-        background: linear-gradient(135deg, #6fa870, #5a8f5b);
-        box-shadow: 0 8px 24px rgba(111, 168, 112, 0.5);
-        transform: translateY(-2px);
+        background: #2ea043;
     }}
     
     .stAlert {{
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 10px;
+        background-color: #161b22 !important;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        color: #c9d1d9 !important;
+    }}
+    
+    .signin-link {{
+        text-align: center;
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        color: #58a6ff;
+        font-size: 0.875rem;
     }}
     </style>
     """
     
     st.markdown(page_bg_img, unsafe_allow_html=True)
-    st.title("Create Account")
-    st.markdown('<p class="subtitle">Join KLIMATA to access climate risk data</p>', unsafe_allow_html=True)
+    st.title("Create your account")
     
     with st.form("signup_form"):
         username = st.text_input("Username", placeholder="Choose a username")
@@ -632,15 +636,17 @@ def show_signup_page():
                 else:
                     st.error("Username already exists.")
     
-    st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("← Back to Login"):
+    st.markdown('<div class="signin-link">Already have an account?</div>', unsafe_allow_html=True)
+    if st.button("Sign in"):
         st.session_state.page = "Login"
         st.rerun()
 
 def show_manage_account_page():
-    # Static background for Manage Account page
     manage_bg = """
     <style>
+    .stApp {background: #1a2e1a; color: #FFFFFF;}
+    [data-testid="stHeader"] {background-color: #2d5016;}
+    section[data-testid="stSidebar"] {background: #1f3a11; color: #FFFFFF;}
     [data-testid="stAppViewContainer"] {
         background: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)),
                     url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80');
@@ -648,6 +654,17 @@ def show_manage_account_page():
         background-position: center;
         background-attachment: fixed;
         background-repeat: no-repeat;
+    }
+    h1, h2, h3 {color: #FFFFFF !important;}
+    .stTextInput > label {color: #FFFFFF !important;}
+    .stTextInput input {background-color: #FFFFFF; color: #1a1a1a !important;}
+    .stButton > button {
+        background: linear-gradient(135deg, #8abf8b, #6fa870);
+        color: white;
+        border: none;
+    }
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #6fa870, #5a8f5b);
     }
     </style>
     """
