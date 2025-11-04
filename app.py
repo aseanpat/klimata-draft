@@ -137,7 +137,7 @@ def build_dashboard(gdf, df2):
         .stRadio > label {color: #FFFFFF !important; font-weight: 500 !important;}
         </style>
         """, unsafe_allow_html=True)
-        metric_style = dict(background_color="#1E3A1E", border_left_color="#66BB6A", border_color="#2E7D32", border_radius="10px")
+        metric_style = dict(background_color="#1E3A1E", border_left_color="#66BB6A", border_color="#2E7D32")
     else:
         st.markdown("""
         <style>
@@ -150,7 +150,7 @@ def build_dashboard(gdf, df2):
         .stRadio > label {color: #1B5E20 !important; font-weight: 500 !important;}
         </style>
         """, unsafe_allow_html=True)
-        metric_style = dict(background_color="#F1F8E9", border_left_color="#4CAF50", border_color="#81C784", border_radius="10px")
+        metric_style = dict(background_color="#F1F8E9", border_left_color="#4CAF50", border_color="#81C784")
 
     # Sidebar Navigation
     with st.sidebar:
