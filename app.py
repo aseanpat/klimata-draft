@@ -184,7 +184,7 @@ def build_dashboard(gdf, df2):
         st.markdown(home_bg, unsafe_allow_html=True)
         
         st.title("Welcome to KLIMATA")
-        st.subheader("Climate Risk Assessment Portal for Iloilo City")
+        st.subheader("A Climate Vulnerability Index for the Ilonggo People")
         
         st.markdown("""
         Despite the abundance of climate data in the Philippines, there remains no unified or accessible system to compare and assess urban climate risks. This lack of standardized risk metrics leaves many cities unprepared for worsening climate impacts, such as flooding, heatwaves, and air pollution. Without clear, data-driven insights, local governments struggle to prioritize interventions and allocate resources effectively, increasing vulnerability for urban populations—especially in rapidly growing areas like Iloilo City.
@@ -242,7 +242,7 @@ def build_dashboard(gdf, df2):
         """
         st.markdown(city_overview_bg, unsafe_allow_html=True)
         
-        st.title(f"Iloilo City: {selected_layer}")
+        st.title(f"Iloilo City: Climate Vulnerability Index")
 
         metric_col = col_config["col"]
         color_scale = col_config["color"]
