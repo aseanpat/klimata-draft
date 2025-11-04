@@ -136,6 +136,8 @@ def build_dashboard(gdf, df2):
         h1, h2, h3 {color: #FFFFFF !important;}
         .stRadio > label {color: #FFFFFF !important; font-weight: 500 !important;}
         .stRadio > div {color: #FFFFFF !important;}
+        .stSelectbox > label {color: #FFFFFF !important;}
+        .stSelectbox > div > div {color: #1a1a1a !important;}
         </style>
         """, unsafe_allow_html=True)
         metric_style = dict(background_color="#2a3f2a", border_left_color="#7cb342", border_color="#558b2f")
@@ -152,6 +154,8 @@ def build_dashboard(gdf, df2):
         .stRadio > div {color: #1a1a1a !important;}
         p, span, div {color: #1a1a1a !important;}
         .stSelectbox label, .stTextInput label {color: #424242 !important;}
+        .stSelectbox > label {color: #1a1a1a !important;}
+        .stSelectbox > div > div {color: #1a1a1a !important;}
         </style>
         """, unsafe_allow_html=True)
         metric_style = dict(background_color="#f1f8e9", border_left_color="#7cb342", border_color="#9ccc65")
