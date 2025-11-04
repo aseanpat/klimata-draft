@@ -141,7 +141,7 @@ def build_dashboard(gdf, df2):
     .stTextInput input {background-color: #FFFFFF; color: #1a1a1a !important;}
     </style>
     """, unsafe_allow_html=True)
-    metric_style = dict(background_color="#2a3f2a", border_left_color="#7cb342", border_color="#558b2f")
+    metric_style = dict(background_color="#2a3f2a", border_left_color="#8abf8b", border_color="#558b2f")
 
     # Sidebar Navigation
     with st.sidebar:
@@ -154,9 +154,9 @@ def build_dashboard(gdf, df2):
             default_index=0,
             styles={
                 "container": {"padding": "5px", "background-color": "transparent"},
-                "icon": {"color": "#9ccc65", "font-size": "18px"},
+                "icon": {"color": "#8abf8b", "font-size": "18px"},
                 "nav-link": {"color": "#d4e8d4", "font-size": "15px", "text-align": "left"},
-                "nav-link-selected": {"background-color": "#7cb342", "color": "white"},
+                "nav-link-selected": {"background-color": "#8abf8b", "color": "white"},
             },
         )
 
@@ -400,8 +400,8 @@ def show_login_page():
         padding: 3.5rem 2.5rem;
         border-radius: 24px;
         backdrop-filter: blur(16px);
-        border: 1px solid rgba(139, 195, 74, 0.4);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(76, 175, 80, 0.15);
+        border: 1px solid rgba(138, 191, 139, 0.4);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(138, 191, 139, 0.15);
     }}
     
     h1 {{
@@ -433,7 +433,7 @@ def show_login_page():
     .stTextInput > div > div > input {{
         background-color: rgba(255, 255, 255, 0.95) !important;
         border-radius: 12px;
-        border: 2px solid rgba(139, 195, 74, 0.6);
+        border: 2px solid rgba(138, 191, 139, 0.6);
         color: #1B5E20 !important;
         padding: 0.75rem 1rem !important;
         font-size: 1rem !important;
@@ -441,34 +441,34 @@ def show_login_page():
     }}
     
     .stTextInput > div > div > input:focus {{
-        border-color: #7CB342 !important;
-        box-shadow: 0 0 0 3px rgba(124, 179, 66, 0.2) !important;
+        border-color: #8abf8b !important;
+        box-shadow: 0 0 0 3px rgba(138, 191, 139, 0.2) !important;
     }}
     
     .stButton > button {{
         width: 100%;
-        background: linear-gradient(135deg, #66BB6A, #4CAF50);
+        background: linear-gradient(135deg, #8abf8b, #6fa870);
         color: white;
         border-radius: 12px;
         font-weight: 700;
         font-size: 1.05rem;
         padding: 0.75rem 1.5rem;
         border: none;
-        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        box-shadow: 0 6px 20px rgba(138, 191, 139, 0.4);
         transition: all 0.3s ease;
         margin-top: 1rem;
     }}
     
     .stButton > button:hover {{
-        background: linear-gradient(135deg, #4CAF50, #388E3C);
-        box-shadow: 0 8px 24px rgba(56, 142, 60, 0.5);
+        background: linear-gradient(135deg, #6fa870, #5a8f5b);
+        box-shadow: 0 8px 24px rgba(111, 168, 112, 0.5);
         transform: translateY(-2px);
     }}
     
     hr {{
         border: none;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(139, 195, 74, 0.5), transparent);
+        background: linear-gradient(90deg, transparent, rgba(138, 191, 139, 0.5), transparent);
         margin: 2rem 0;
     }}
     
@@ -531,8 +531,8 @@ def show_signup_page():
         padding: 3.5rem 2.5rem;
         border-radius: 24px;
         backdrop-filter: blur(16px);
-        border: 1px solid rgba(139, 195, 74, 0.4);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(76, 175, 80, 0.15);
+        border: 1px solid rgba(138, 191, 139, 0.4);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(138, 191, 139, 0.15);
     }}
     
     h1 {{
@@ -564,7 +564,7 @@ def show_signup_page():
     .stTextInput > div > div > input {{
         background-color: rgba(255, 255, 255, 0.95) !important;
         border-radius: 12px;
-        border: 2px solid rgba(139, 195, 74, 0.6);
+        border: 2px solid rgba(138, 191, 139, 0.6);
         color: #1B5E20 !important;
         padding: 0.75rem 1rem !important;
         font-size: 1rem !important;
@@ -572,27 +572,27 @@ def show_signup_page():
     }}
     
     .stTextInput > div > div > input:focus {{
-        border-color: #7CB342 !important;
-        box-shadow: 0 0 0 3px rgba(124, 179, 66, 0.2) !important;
+        border-color: #8abf8b !important;
+        box-shadow: 0 0 0 3px rgba(138, 191, 139, 0.2) !important;
     }}
     
     .stButton > button {{
         width: 100%;
-        background: linear-gradient(135deg, #66BB6A, #4CAF50);
+        background: linear-gradient(135deg, #8abf8b, #6fa870);
         color: white;
         border-radius: 12px;
         font-weight: 700;
         font-size: 1.05rem;
         padding: 0.75rem 1.5rem;
         border: none;
-        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        box-shadow: 0 6px 20px rgba(138, 191, 139, 0.4);
         transition: all 0.3s ease;
         margin-top: 1rem;
     }}
     
     .stButton > button:hover {{
-        background: linear-gradient(135deg, #4CAF50, #388E3C);
-        box-shadow: 0 8px 24px rgba(56, 142, 60, 0.5);
+        background: linear-gradient(135deg, #6fa870, #5a8f5b);
+        box-shadow: 0 8px 24px rgba(111, 168, 112, 0.5);
         transform: translateY(-2px);
     }}
     
