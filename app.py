@@ -397,15 +397,12 @@ def show_login_page():
     <style>
     @keyframes slideCarousel {{
         0% {{ background-position: 0% 50%; opacity: 1; }}
-        23% {{ background-position: 100% 50%; opacity: 1; }}
-        25% {{ opacity: 0; }}
-        27% {{ opacity: 1; background-position: 0% 50%; }}
-        48% {{ background-position: 100% 50%; opacity: 1; }}
-        50% {{ opacity: 0; }}
-        52% {{ opacity: 1; background-position: 0% 50%; }}
-        73% {{ background-position: 100% 50%; opacity: 1; }}
-        75% {{ opacity: 0; }}
-        77% {{ opacity: 1; background-position: 0% 50%; }}
+        31% {{ background-position: 100% 50%; opacity: 1; }}
+        33% {{ opacity: 0; }}
+        35% {{ opacity: 1; background-position: 0% 50%; }}
+        64% {{ background-position: 100% 50%; opacity: 1; }}
+        66% {{ opacity: 0; }}
+        68% {{ opacity: 1; background-position: 0% 50%; }}
         98% {{ background-position: 100% 50%; opacity: 1; }}
         100% {{ background-position: 0% 50%; opacity: 1; }}
     }}
@@ -421,11 +418,10 @@ def show_login_page():
         background: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)),
                     url('{bg_images[0]}'),
                     url('{bg_images[1]}'),
-                    url('{bg_images[2]}'),
-                    url('{bg_images[3]}');
+                    url('{bg_images[2]}');
         background-size: 120% 100%;
         background-position: 0% 50%;
-        animation: slideCarousel 24s ease-in-out infinite;
+        animation: slideCarousel 21s ease-in-out infinite;
     }}
     
     /* Full page background with carousel */
