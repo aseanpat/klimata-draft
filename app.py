@@ -211,21 +211,29 @@ def build_dashboard(gdf, df2):
         )
 
         layer_config = {
-            "Urban Risk": {"col": "urban_risk_index", "color": "YlOrRd", "legend": "Urban Risk Index", "bg": "linear-gradient(135deg, #2d1810, #1a0f08)", "accent": "#d9534f"},
-            "Population": {"col": "pop_total", "color": "Blues", "legend": "Population Total", "bg": "linear-gradient(135deg, #0f1e2e, #081220)", "accent": "#5b9bd5"},
-            "Amenity": {"col": "infra_index", "color": "Reds", "legend": "Amenity Index", "bg": "linear-gradient(135deg, #2e1010, #1a0808)", "accent": "#e74c3c"},
-            "Climate Exposure": {"col": "climate_exposure_score", "color": "Greens", "legend": "Climate Exposure Score", "bg": "linear-gradient(135deg, #1a2e1a, #0d1a0d)", "accent": "#8abf8b"},
+            "Urban Risk": {"col": "urban_risk_index", "color": "YlOrRd", "legend": "Urban Risk Index", "gradient": "#2d1810, #4a2418, #2d1810, #1a0f08", "accent": "#d9534f"},
+            "Population": {"col": "pop_total", "color": "Blues", "legend": "Population Total", "gradient": "#0f1e2e, #1a3548, #0f1e2e, #081220", "accent": "#5b9bd5"},
+            "Amenity": {"col": "infra_index", "color": "Reds", "legend": "Amenity Index", "gradient": "#2e1010, #4a1818, #2e1010, #1a0808", "accent": "#e74c3c"},
+            "Climate Exposure": {"col": "climate_exposure_score", "color": "Greens", "legend": "Climate Exposure Score", "gradient": "#1a2e1a, #2a4a2a, #1a2e1a, #0d1a0d", "accent": "#8abf8b"},
         }
         
         col_config = layer_config[selected_layer]
-        theme_bg = col_config["bg"]
+        theme_gradient = col_config["gradient"]
         theme_accent = col_config["accent"]
         
-        # Dynamic theme based on selected layer
+        # Dynamic theme based on selected layer with animation
         city_overview_bg = f"""
         <style>
+        @keyframes gradientShift {{
+            0% {{ background-position: 0% 50%; }}
+            50% {{ background-position: 100% 50%; }}
+            100% {{ background-position: 0% 50%; }}
+        }}
+        
         [data-testid="stAppViewContainer"] {{
-            background: {theme_bg} !important;
+            background: linear-gradient(-45deg, {theme_gradient}) !important;
+            background-size: 400% 400% !important;
+            animation: gradientShift 15s ease infinite !important;
         }}
         [data-testid="stAppViewContainer"] h1 {{
             color: #FFFFFF !important;
