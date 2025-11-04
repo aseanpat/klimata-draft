@@ -381,22 +381,36 @@ def build_dashboard(gdf, df2):
 # PAGE FUNCTIONS
 # ==========================
 def show_login_page():
-    """Login page with background image from URL"""
+    """Login page with carousel background"""
     
-    # Your Iloilo City background image
-    background_image_url = "https://www.detourista.com/wp/wp-content/uploads/Tax-Place/Philippines/Iloilo/Iloilo/Featured/001-Calle-Real-in-Iloilo-City-150105-063819.jpg"
+    # Carousel background images
+    bg_images = [
+        "https://www.detourista.com/wp/wp-content/uploads/Tax-Place/Philippines/Iloilo/Iloilo/Featured/001-Calle-Real-in-Iloilo-City-150105-063819.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/ff/86/7b/pictures-at-the-iloilo.jpg?w=1200&h=-1&s=1",
+        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200",
+        "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1200"
+    ]
     
-    # Apply the background styling
+    bg_urls = "', '".join(bg_images)
+    
+    # Apply the carousel background styling
     page_bg_img = f"""
     <style>
-    /* Full page background */
+    @keyframes bgCarousel {{
+        0%, 25% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[0]}'); }}
+        25%, 50% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[1]}'); }}
+        50%, 75% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[2]}'); }}
+        75%, 100% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[3]}'); }}
+    }}
+    
+    /* Full page background with carousel */
     [data-testid="stAppViewContainer"] {{
-        background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), 
-                          url("{background_image_url}");
+        animation: bgCarousel 20s infinite;
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
         background-repeat: no-repeat;
+        transition: background-image 1s ease-in-out;
     }}
     
     /* Hide header completely */
@@ -525,19 +539,27 @@ def show_signup_page():
         st.rerun()
 
 def show_manage_account_page():
-    # Add background image for Manage Account page
-    background_image_url = "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/ff/86/7b/pictures-at-the-iloilo.jpg?w=1200&h=-1&s=1"
+    # Carousel background for Manage Account page
+    bg_images = [
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/ff/86/7b/pictures-at-the-iloilo.jpg?w=1200&h=-1&s=1",
+        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200",
+        "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1200"
+    ]
     
     manage_bg = f"""
     <style>
-    /* Full page background */
+    @keyframes manageBgCarousel {{
+        0%, 33% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[0]}'); }}
+        33%, 66% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[1]}'); }}
+        66%, 100% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[2]}'); }}
+    }}
     [data-testid="stAppViewContainer"] {{
-        background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), 
-                          url("{background_image_url}");
+        animation: manageBgCarousel 18s infinite;
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
         background-repeat: no-repeat;
+        transition: background-image 1s ease-in-out;
     }}
     </style>
     """
