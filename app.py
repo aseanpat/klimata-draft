@@ -343,11 +343,7 @@ def build_dashboard(gdf, df2):
         # --- Amenity Visualization ---
         st.subheader("Nearest Amenities Overview")
         
-        col_filter1, col_filter2 = st.columns(2)
-        with col_filter1:
-            start_date = st.date_input("Start Date", value=pd.to_datetime("2024-01-01"))
-        with col_filter2:
-            end_date = st.date_input("End Date", value=pd.to_datetime("2024-12-31"))
+        selected_year = st.selectbox("Filter by Year", [2020, 2021, 2022, 2023, 2024], index=4)
         
         brgy_amenities = df2[df2['barangay_name'] == selected_brgy]
 
