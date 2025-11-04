@@ -134,7 +134,10 @@ def build_dashboard(gdf, df2):
     .stRadio > label {color: #FFFFFF !important; font-weight: 500 !important;}
     .stRadio > div {color: #FFFFFF !important;}
     .stSelectbox > label {color: #FFFFFF !important;}
-    .stSelectbox > div > div {color: #1a1a1a !important;}
+    .stSelectbox div[data-baseweb="select"] {background-color: #FFFFFF;}
+    .stSelectbox div[data-baseweb="select"] > div {color: #1a1a1a !important;}
+    .stTextInput > label {color: #FFFFFF !important;}
+    .stTextInput input {background-color: #FFFFFF; color: #1a1a1a !important;}
     </style>
     """, unsafe_allow_html=True)
     metric_style = dict(background_color="#2a3f2a", border_left_color="#7cb342", border_color="#558b2f")
