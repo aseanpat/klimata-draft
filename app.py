@@ -343,9 +343,14 @@ def build_dashboard(gdf, df2):
         # --- Amenity Visualization ---
         st.subheader("Nearest Amenities Overview")
         
-        selected_year = st.selectbox("Filter by Year", [2020, 2021, 2022, 2023, 2024], index=4)
-        
-        brgy_amenities = df2[df2['barangay_name'] == selected_brgy]
+        if 'date' in df2.columns:
+            df2['date'] = pd.to_datetime(df2['date'], errors='coerce')
+            df2['year'] = df2['date'].dt.year
+            available_years = sorted(df2['year'].dropna().unique().astype(int))
+            selected_year = st.selectbox("Filter by Year", available_years, index=len(available_years)-1 if available_years else 0)
+            brgy_amenities = df2[(df2['barangay_name'] == selected_brgy) & (df2['year'] == selected_year)]
+        else:
+            brgy_amenities = df2[df2['barangay_name'] == selected_brgy]
 
         if not brgy_amenities.empty:
             amenity_cols = ['college_nearest', 'community_centre_nearest', 'school_nearest',
