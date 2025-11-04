@@ -348,18 +348,19 @@ def build_dashboard(gdf, df2):
         if not brgy_amenities.empty:
             amenity_cols = ['college_nearest', 'community_centre_nearest', 'school_nearest',
                             'shelter_nearest', 'town_hall_nearest', 'university_nearest']
-            amenity_data = brgy_amenities[amenity_cols].melt(var_name='Amenity Type', value_name='Distance (meters)')
+            amenity_data = brgy_amenities[amenity_cols].melt(var_name='Amenity Type', value_name='Distance (km)')
+            amenity_data['Distance (km)'] = amenity_data['Distance (km)'] / 1000
             amenity_data['Amenity Type'] = amenity_data['Amenity Type'].str.replace('_nearest', '').str.replace('_', ' ').str.title()
 
             fig = px.bar(
                 amenity_data,
                 x='Amenity Type',
-                y='Distance (meters)',
+                y='Distance (km)',
                 title=f"Nearest Facilities from {selected_brgy}",
-                color='Distance (meters)',
+                color='Distance (km)',
                 color_continuous_scale='tealgrn'
             )
-            fig.update_traces(texttemplate='%{y:.1f}', textposition='outside')
+            fig.update_traces(texttemplate='%{y:.2f}', textposition='outside')
             fig.update_layout(xaxis_tickangle=-30)
             st.plotly_chart(fig, use_container_width=True)
 
