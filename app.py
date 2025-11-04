@@ -640,9 +640,11 @@ def show_signup_page():
         st.rerun()
 
 def show_manage_account_page():
-    # Static background for Manage Account page
     manage_bg = """
     <style>
+    .stApp {background: #1a2e1a; color: #FFFFFF;}
+    [data-testid="stHeader"] {background-color: #2d5016;}
+    section[data-testid="stSidebar"] {background: #1f3a11; color: #FFFFFF;}
     [data-testid="stAppViewContainer"] {
         background: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)),
                     url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80');
@@ -650,6 +652,17 @@ def show_manage_account_page():
         background-position: center;
         background-attachment: fixed;
         background-repeat: no-repeat;
+    }
+    h1, h2, h3 {color: #FFFFFF !important;}
+    .stTextInput > label {color: #FFFFFF !important;}
+    .stTextInput input {background-color: #FFFFFF; color: #1a1a1a !important;}
+    .stButton > button {
+        background: linear-gradient(135deg, #8abf8b, #6fa870);
+        color: white;
+        border: none;
+    }
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #6fa870, #5a8f5b);
     }
     </style>
     """
