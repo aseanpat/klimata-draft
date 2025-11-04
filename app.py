@@ -198,6 +198,8 @@ def build_dashboard(gdf, df2):
         - **Multiple Risk Indicators**: Urban risk, population density, amenity index, and climate exposure
         
         """)
+        
+        st.image("https://raw.githubusercontent.com/aseanpat/klimata-draft/main/Home%20Page%20Iloilo.jpg", caption="Iloilo City", use_container_width=True)
     
     # =====================
     # City Overview
