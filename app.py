@@ -148,8 +148,8 @@ def build_dashboard(gdf, df2):
         st.markdown(f"### Welcome, {st.session_state.get('username','Guest')}")
         selected = option_menu(
             menu_title=None,
-            options=["City Overview", "Barangay Deep Dive", "Manage Account", "Log Out"],
-            icons=["tree-fill", "geo-alt-fill", "person-circle", "box-arrow-right"],
+            options=["Home", "City Overview", "Barangay Deep Dive", "Manage Account", "Log Out"],
+            icons=["house-fill", "tree-fill", "geo-alt-fill", "person-circle", "box-arrow-right"],
             menu_icon="globe-americas",
             default_index=0,
             styles={
@@ -170,29 +170,39 @@ def build_dashboard(gdf, df2):
         st.rerun()
 
     # =====================
-    # City Overview
+    # Home
     # =====================
-    if selected == "City Overview":
-        # Static background for City Overview
-        city_overview_bg = """
+    if selected == "Home":
+        home_bg = """
         <style>
         [data-testid="stAppViewContainer"] {
-            background: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)),
-                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-        }
-        [data-testid="stAppViewContainer"] h1 {
-            color: #FFFFFF !important;
+            background: #1a2e1a !important;
         }
         </style>
         """
-        st.markdown(city_overview_bg, unsafe_allow_html=True)
+        st.markdown(home_bg, unsafe_allow_html=True)
         
-        st.title("Iloilo City: Climate Vulnerability Index")
-
+        st.title("Welcome to KLIMATA")
+        st.subheader("Climate Risk Assessment Portal for Iloilo City")
+        
+        st.markdown("""
+        ### About KLIMATA
+        KLIMATA is a comprehensive climate risk assessment dashboard designed to help understand and analyze 
+        climate vulnerability across Iloilo City's barangays.
+        
+        ### Features
+        - **City Overview**: Explore city-wide climate risk metrics with interactive heat maps
+        - **Barangay Deep Dive**: Detailed analysis of individual barangays including amenity access
+        - **Multiple Risk Indicators**: Urban risk, population density, amenity index, and climate exposure
+        
+        ### Get Started
+        Select a page from the sidebar to begin exploring climate risk data.
+        """)
+    
+    # =====================
+    # City Overview
+    # =====================
+    elif selected == "City Overview":
         # Sidebar map selector
         selected_layer = st.sidebar.radio(
             "Select Map Layer",
@@ -200,13 +210,31 @@ def build_dashboard(gdf, df2):
         )
 
         layer_config = {
-            "Urban Risk": {"col": "urban_risk_index", "color": "YlOrRd", "legend": "Urban Risk Index"},
-            "Population": {"col": "pop_total", "color": "Blues", "legend": "Population Total"},
-            "Amenity": {"col": "infra_index", "color": "Reds", "legend": "Amenity Index"},
-            "Climate Exposure": {"col": "climate_exposure_score", "color": "Greens", "legend": "Climate Exposure Score"},
+            "Urban Risk": {"col": "urban_risk_index", "color": "YlOrRd", "legend": "Urban Risk Index", "bg": "#2d1810", "accent": "#d9534f"},
+            "Population": {"col": "pop_total", "color": "Blues", "legend": "Population Total", "bg": "#0f1e2e", "accent": "#5b9bd5"},
+            "Amenity": {"col": "infra_index", "color": "Reds", "legend": "Amenity Index", "bg": "#2e1010", "accent": "#e74c3c"},
+            "Climate Exposure": {"col": "climate_exposure_score", "color": "Greens", "legend": "Climate Exposure Score", "bg": "#1a2e1a", "accent": "#8abf8b"},
         }
-
+        
         col_config = layer_config[selected_layer]
+        theme_bg = col_config["bg"]
+        theme_accent = col_config["accent"]
+        
+        # Dynamic theme based on selected layer
+        city_overview_bg = f"""
+        <style>
+        [data-testid="stAppViewContainer"] {{
+            background: {theme_bg} !important;
+        }}
+        [data-testid="stAppViewContainer"] h1 {{
+            color: #FFFFFF !important;
+        }}
+        </style>
+        """
+        st.markdown(city_overview_bg, unsafe_allow_html=True)
+        
+        st.title("Iloilo City: Climate Vulnerability Index")
+
         metric_col = col_config["col"]
         color_scale = col_config["color"]
         legend_name = col_config["legend"]
