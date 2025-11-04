@@ -18,7 +18,8 @@ from streamlit_extras.metric_cards import style_metric_cards
 # ==========================
 st.set_page_config(
     page_title="KLIMATA Risk Dashboard",
-    page_icon="🌿"
+    page_icon="🌿",
+    layout="wide"
 )
 
 # ==========================
