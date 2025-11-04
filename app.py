@@ -124,27 +124,33 @@ def build_dashboard(gdf, df2):
 
     dark_mode = st.sidebar.toggle("🌗 Dark Mode", value=True)
     
-    # Apply nature-themed styling
+    # Apply nature-themed styling with better readability
     if dark_mode:
         st.markdown("""
         <style>
-        .stApp {background: linear-gradient(135deg, #1a2f1a 0%, #0d1f0d 100%); color: #E8F5E9;}
+        .stApp {background: #0a1f0a; color: #FFFFFF;}
         [data-testid="stHeader"] {background-color: #1b5e20;}
-        div[data-testid="stMetricValue"] {color: #66BB6A !important; text-shadow: 0px 0px 8px rgba(102,187,106,0.6);}
-        section[data-testid="stSidebar"] {background: linear-gradient(180deg, #1b5e20 0%, #2e7d32 100%); color: #E8F5E9;}
+        div[data-testid="stMetricValue"] {color: #81C784 !important; font-size: 1.8rem !important; font-weight: 600 !important;}
+        div[data-testid="stMetricLabel"] {color: #C8E6C9 !important; font-size: 1rem !important;}
+        section[data-testid="stSidebar"] {background: #1b5e20; color: #FFFFFF;}
+        h1, h2, h3 {color: #FFFFFF !important;}
+        .stRadio > label {color: #FFFFFF !important; font-weight: 500 !important;}
         </style>
         """, unsafe_allow_html=True)
-        metric_style = dict(background_color="#1E3A1E", border_left_color="#66BB6A", border_color="#2E7D32")
+        metric_style = dict(background_color="#1E3A1E", border_left_color="#66BB6A", border_color="#2E7D32", border_radius="10px")
     else:
         st.markdown("""
         <style>
-        .stApp {background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); color: #1B5E20;}
-        [data-testid="stHeader"] {background-color: #A5D6A7;}
-        div[data-testid="stMetricValue"] {color: #2E7D32 !important;}
-        section[data-testid="stSidebar"] {background: linear-gradient(180deg, #C8E6C9 0%, #A5D6A7 100%); color: #1B5E20;}
+        .stApp {background: #FFFFFF; color: #1B5E20;}
+        [data-testid="stHeader"] {background-color: #4CAF50;}
+        div[data-testid="stMetricValue"] {color: #2E7D32 !important; font-size: 1.8rem !important; font-weight: 600 !important;}
+        div[data-testid="stMetricLabel"] {color: #1B5E20 !important; font-size: 1rem !important;}
+        section[data-testid="stSidebar"] {background: #E8F5E9; color: #1B5E20;}
+        h1, h2, h3 {color: #1B5E20 !important;}
+        .stRadio > label {color: #1B5E20 !important; font-weight: 500 !important;}
         </style>
         """, unsafe_allow_html=True)
-        metric_style = dict(background_color="#F1F8E9", border_left_color="#66BB6A", border_color="#81C784")
+        metric_style = dict(background_color="#F1F8E9", border_left_color="#4CAF50", border_color="#81C784", border_radius="10px")
 
     # Sidebar Navigation
     with st.sidebar:
@@ -178,22 +184,22 @@ def build_dashboard(gdf, df2):
     if selected == "City Overview":
         # Carousel background for City Overview
         bg_images = [
-            "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%201.jpg",
-            "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%202.jpg",
-            "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%203.jpg"
+            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%201.jpg",
+            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%202.jpg",
+            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%203.jpg"
         ]
         
         city_overview_bg = f"""
         <style>
         @keyframes cityBgSlide {{
             0%, 33% {{ 
-                background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[0]}');
+                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[0]}');
             }}
             33.33%, 66% {{ 
-                background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[1]}');
+                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[1]}');
             }}
             66.66%, 100% {{ 
-                background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[2]}');
+                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[2]}');
             }}
         }}
         
@@ -310,22 +316,22 @@ def build_dashboard(gdf, df2):
     elif selected == "Barangay Deep Dive":
         # Carousel background for Barangay Deep Dive
         bg_images = [
-            "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%201.jpg",
-            "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%202.jpg",
-            "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%203.jpg"
+            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%201.jpg",
+            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%202.jpg",
+            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%203.jpg"
         ]
         
         deep_dive_bg = f"""
         <style>
         @keyframes deepDiveBgSlide {{
             0%, 33% {{ 
-                background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[0]}');
+                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[0]}');
             }}
             33.33%, 66% {{ 
-                background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[1]}');
+                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[1]}');
             }}
             66.66%, 100% {{ 
-                background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[2]}');
+                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[2]}');
             }}
         }}
         
@@ -415,9 +421,9 @@ def show_login_page():
     
     # Carousel background images from GitHub
     bg_images = [
-        "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%201.jpg",
-        "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%202.jpg",
-        "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%203.jpg"
+        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%201.jpg",
+        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%202.jpg",
+        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%203.jpg"
     ]
     
     bg_urls = "', '".join(bg_images)
@@ -427,16 +433,13 @@ def show_login_page():
     <style>
     @keyframes bgSlide {{
         0%, 33% {{ 
-            background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[0]}');
-            background-position: 0% 50%;
+            background-image: linear-gradient(rgba(27, 94, 32, 0.6), rgba(46, 125, 50, 0.7)), url('{bg_images[0]}');
         }}
         33.33%, 66% {{ 
-            background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[1]}');
-            background-position: 100% 50%;
+            background-image: linear-gradient(rgba(27, 94, 32, 0.6), rgba(46, 125, 50, 0.7)), url('{bg_images[1]}');
         }}
         66.66%, 100% {{ 
-            background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[2]}');
-            background-position: 0% 50%;
+            background-image: linear-gradient(rgba(27, 94, 32, 0.6), rgba(46, 125, 50, 0.7)), url('{bg_images[2]}');
         }}
     }}
     
@@ -576,22 +579,22 @@ def show_signup_page():
 def show_manage_account_page():
     # Carousel background for Manage Account page
     bg_images = [
-        "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%201.jpg",
-        "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%202.jpg",
-        "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/carousel_images/carousel%20slide%203.jpg"
+        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%201.jpg",
+        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%202.jpg",
+        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%203.jpg"
     ]
     
     manage_bg = f"""
     <style>
     @keyframes manageBgSlide {{
         0%, 33% {{ 
-            background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[0]}');
+            background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[0]}');
         }}
         33.33%, 66% {{ 
-            background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[1]}');
+            background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[1]}');
         }}
         66.66%, 100% {{ 
-            background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[2]}');
+            background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[2]}');
         }}
     }}
     
