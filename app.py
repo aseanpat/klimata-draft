@@ -124,33 +124,33 @@ def build_dashboard(gdf, df2):
 
     dark_mode = st.sidebar.toggle("🌗 Dark Mode", value=True)
     
-    # Apply nature-themed styling with better readability
+    # Apply nature-themed styling with softer greens
     if dark_mode:
         st.markdown("""
         <style>
-        .stApp {background: #0a1f0a; color: #FFFFFF;}
-        [data-testid="stHeader"] {background-color: #1b5e20;}
-        div[data-testid="stMetricValue"] {color: #81C784 !important; font-size: 1.8rem !important; font-weight: 600 !important;}
-        div[data-testid="stMetricLabel"] {color: #C8E6C9 !important; font-size: 1rem !important;}
-        section[data-testid="stSidebar"] {background: #1b5e20; color: #FFFFFF;}
+        .stApp {background: #1a2e1a; color: #FFFFFF;}
+        [data-testid="stHeader"] {background-color: #2d5016;}
+        div[data-testid="stMetricValue"] {color: #a8d5a8 !important; font-size: 1.8rem !important; font-weight: 600 !important;}
+        div[data-testid="stMetricLabel"] {color: #d4e8d4 !important; font-size: 1rem !important;}
+        section[data-testid="stSidebar"] {background: #2d5016; color: #FFFFFF;}
         h1, h2, h3 {color: #FFFFFF !important;}
         .stRadio > label {color: #FFFFFF !important; font-weight: 500 !important;}
         </style>
         """, unsafe_allow_html=True)
-        metric_style = dict(background_color="#1E3A1E", border_left_color="#66BB6A", border_color="#2E7D32")
+        metric_style = dict(background_color="#2a3f2a", border_left_color="#7cb342", border_color="#558b2f")
     else:
         st.markdown("""
         <style>
-        .stApp {background: #FFFFFF; color: #1B5E20;}
-        [data-testid="stHeader"] {background-color: #4CAF50;}
-        div[data-testid="stMetricValue"] {color: #2E7D32 !important; font-size: 1.8rem !important; font-weight: 600 !important;}
-        div[data-testid="stMetricLabel"] {color: #1B5E20 !important; font-size: 1rem !important;}
-        section[data-testid="stSidebar"] {background: #E8F5E9; color: #1B5E20;}
-        h1, h2, h3 {color: #1B5E20 !important;}
-        .stRadio > label {color: #1B5E20 !important; font-weight: 500 !important;}
+        .stApp {background: #f5f9f5; color: #2d5016;}
+        [data-testid="stHeader"] {background-color: #7cb342;}
+        div[data-testid="stMetricValue"] {color: #558b2f !important; font-size: 1.8rem !important; font-weight: 600 !important;}
+        div[data-testid="stMetricLabel"] {color: #2d5016 !important; font-size: 1rem !important;}
+        section[data-testid="stSidebar"] {background: #e8f5e9; color: #2d5016;}
+        h1, h2, h3 {color: #2d5016 !important;}
+        .stRadio > label {color: #2d5016 !important; font-weight: 500 !important;}
         </style>
         """, unsafe_allow_html=True)
-        metric_style = dict(background_color="#F1F8E9", border_left_color="#4CAF50", border_color="#81C784")
+        metric_style = dict(background_color="#f1f8e9", border_left_color="#7cb342", border_color="#9ccc65")
 
     # Sidebar Navigation
     with st.sidebar:
@@ -163,9 +163,9 @@ def build_dashboard(gdf, df2):
             default_index=0,
             styles={
                 "container": {"padding": "5px", "background-color": "transparent"},
-                "icon": {"color": "#66BB6A", "font-size": "18px"},
-                "nav-link": {"color": "#E8F5E9" if dark_mode else "#1B5E20", "font-size": "15px", "text-align": "left"},
-                "nav-link-selected": {"background-color": "#4CAF50", "color": "white"},
+                "icon": {"color": "#9ccc65", "font-size": "18px"},
+                "nav-link": {"color": "#d4e8d4" if dark_mode else "#2d5016", "font-size": "15px", "text-align": "left"},
+                "nav-link-selected": {"background-color": "#7cb342", "color": "white"},
             },
         )
 
