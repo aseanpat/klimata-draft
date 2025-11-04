@@ -182,34 +182,17 @@ def build_dashboard(gdf, df2):
     # City Overview
     # =====================
     if selected == "City Overview":
-        # Carousel background for City Overview
-        bg_images = [
-            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%201.jpg",
-            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%202.jpg",
-            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%203.jpg"
-        ]
-        
-        city_overview_bg = f"""
+        # Static background for City Overview
+        city_overview_bg = """
         <style>
-        @keyframes cityBgSlide {{
-            0%, 33% {{ 
-                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[0]}');
-            }}
-            33.33%, 66% {{ 
-                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[1]}');
-            }}
-            66.66%, 100% {{ 
-                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[2]}');
-            }}
-        }}
-        
-        [data-testid="stAppViewContainer"] {{
-            animation: cityBgSlide 18s ease-in-out infinite;
+        [data-testid="stAppViewContainer"] {
+            background: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)),
+                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
-        }}
+        }
         </style>
         """
         st.markdown(city_overview_bg, unsafe_allow_html=True)
@@ -314,34 +297,17 @@ def build_dashboard(gdf, df2):
     # Barangay Deep Dive
     # =====================
     elif selected == "Barangay Deep Dive":
-        # Carousel background for Barangay Deep Dive
-        bg_images = [
-            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%201.jpg",
-            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%202.jpg",
-            "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%203.jpg"
-        ]
-        
-        deep_dive_bg = f"""
+        # Static background for Barangay Deep Dive
+        deep_dive_bg = """
         <style>
-        @keyframes deepDiveBgSlide {{
-            0%, 33% {{ 
-                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[0]}');
-            }}
-            33.33%, 66% {{ 
-                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[1]}');
-            }}
-            66.66%, 100% {{ 
-                background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[2]}');
-            }}
-        }}
-        
-        [data-testid="stAppViewContainer"] {{
-            animation: deepDiveBgSlide 18s ease-in-out infinite;
+        [data-testid="stAppViewContainer"] {
+            background: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)),
+                        url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
-        }}
+        }
         </style>
         """
         st.markdown(deep_dive_bg, unsafe_allow_html=True)
@@ -419,37 +385,17 @@ def build_dashboard(gdf, df2):
 def show_login_page():
     """Login page with carousel background"""
     
-    # Carousel background images from GitHub
-    bg_images = [
-        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%201.jpg",
-        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%202.jpg",
-        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%203.jpg"
-    ]
-    
-    bg_urls = "', '".join(bg_images)
-    
-    # Apply the carousel background styling with smooth sliding
-    page_bg_img = f"""
+    # Static background for login page
+    page_bg_img = """
     <style>
-    @keyframes bgSlide {{
-        0%, 33% {{ 
-            background-image: linear-gradient(rgba(27, 94, 32, 0.6), rgba(46, 125, 50, 0.7)), url('{bg_images[0]}');
-        }}
-        33.33%, 66% {{ 
-            background-image: linear-gradient(rgba(27, 94, 32, 0.6), rgba(46, 125, 50, 0.7)), url('{bg_images[1]}');
-        }}
-        66.66%, 100% {{ 
-            background-image: linear-gradient(rgba(27, 94, 32, 0.6), rgba(46, 125, 50, 0.7)), url('{bg_images[2]}');
-        }}
-    }}
-    
-    [data-testid="stAppViewContainer"] {{
-        animation: bgSlide 18s ease-in-out infinite;
+    [data-testid="stAppViewContainer"] {
+        background: linear-gradient(rgba(27, 94, 32, 0.6), rgba(46, 125, 50, 0.7)),
+                    url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
         background-repeat: no-repeat;
-    }}
+    }
     
     /* Hide header completely */
     [data-testid="stHeader"] {{
@@ -577,34 +523,17 @@ def show_signup_page():
         st.rerun()
 
 def show_manage_account_page():
-    # Carousel background for Manage Account page
-    bg_images = [
-        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%201.jpg",
-        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%202.jpg",
-        "https://raw.githubusercontent.com/YOUR_USERNAME/aseanpat/klimata-draft/carousel%20slide%203.jpg"
-    ]
-    
-    manage_bg = f"""
+    # Static background for Manage Account page
+    manage_bg = """
     <style>
-    @keyframes manageBgSlide {{
-        0%, 33% {{ 
-            background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[0]}');
-        }}
-        33.33%, 66% {{ 
-            background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[1]}');
-        }}
-        66.66%, 100% {{ 
-            background-image: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)), url('{bg_images[2]}');
-        }}
-    }}
-    
-    [data-testid="stAppViewContainer"] {{
-        animation: manageBgSlide 18s ease-in-out infinite;
+    [data-testid="stAppViewContainer"] {
+        background: linear-gradient(rgba(10, 31, 10, 0.85), rgba(10, 31, 10, 0.85)),
+                    url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
         background-repeat: no-repeat;
-    }}
+    }
     </style>
     """
     st.markdown(manage_bg, unsafe_allow_html=True)
