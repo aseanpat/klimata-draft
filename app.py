@@ -393,24 +393,46 @@ def show_login_page():
     
     bg_urls = "', '".join(bg_images)
     
-    # Apply the carousel background styling
+    # Apply the carousel background styling with smooth sliding
     page_bg_img = f"""
     <style>
-    @keyframes bgCarousel {{
-        0%, 25% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[0]}'); }}
-        25%, 50% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[1]}'); }}
-        50%, 75% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[2]}'); }}
-        75%, 100% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)), url('{bg_images[3]}'); }}
+    @keyframes slideCarousel {{
+        0% {{ background-position: 0% 50%; opacity: 1; }}
+        23% {{ background-position: 100% 50%; opacity: 1; }}
+        25% {{ opacity: 0; }}
+        27% {{ opacity: 1; background-position: 0% 50%; }}
+        48% {{ background-position: 100% 50%; opacity: 1; }}
+        50% {{ opacity: 0; }}
+        52% {{ opacity: 1; background-position: 0% 50%; }}
+        73% {{ background-position: 100% 50%; opacity: 1; }}
+        75% {{ opacity: 0; }}
+        77% {{ opacity: 1; background-position: 0% 50%; }}
+        98% {{ background-position: 100% 50%; opacity: 1; }}
+        100% {{ background-position: 0% 50%; opacity: 1; }}
+    }}
+    
+    [data-testid="stAppViewContainer"]::before {{
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(rgba(27, 94, 32, 0.5), rgba(46, 125, 50, 0.6)),
+                    url('{bg_images[0]}'),
+                    url('{bg_images[1]}'),
+                    url('{bg_images[2]}'),
+                    url('{bg_images[3]}');
+        background-size: 120% 100%;
+        background-position: 0% 50%;
+        animation: slideCarousel 24s ease-in-out infinite;
     }}
     
     /* Full page background with carousel */
     [data-testid="stAppViewContainer"] {{
-        animation: bgCarousel 20s infinite;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        transition: background-image 1s ease-in-out;
+        position: relative;
+        background: transparent;
     }}
     
     /* Hide header completely */
@@ -493,7 +515,7 @@ def show_login_page():
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
     # Login form content
-    st.title("🌿 KLIMATA: Climate Risk Assessment Portal")
+    st.title("KLIMATA: Climate Risk Assessment Portal")
     
     with st.form("login_form"):
         username = st.text_input("Username")
@@ -507,7 +529,7 @@ def show_login_page():
                 st.session_state.page = "Dashboard"
                 st.rerun()
             else:
-                st.error("😕 User not known or password incorrect")
+                st.error("User not known or password incorrect")
 
     st.markdown("---")
     if st.button("Need an account? Sign Up"):
@@ -548,18 +570,38 @@ def show_manage_account_page():
     
     manage_bg = f"""
     <style>
-    @keyframes manageBgCarousel {{
-        0%, 33% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[0]}'); }}
-        33%, 66% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[1]}'); }}
-        66%, 100% {{ background-image: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)), url('{bg_images[2]}'); }}
+    @keyframes manageSlideCarousel {{
+        0% {{ background-position: 0% 50%; opacity: 1; }}
+        31% {{ background-position: 100% 50%; opacity: 1; }}
+        33% {{ opacity: 0; }}
+        35% {{ opacity: 1; background-position: 0% 50%; }}
+        64% {{ background-position: 100% 50%; opacity: 1; }}
+        66% {{ opacity: 0; }}
+        68% {{ opacity: 1; background-position: 0% 50%; }}
+        98% {{ background-position: 100% 50%; opacity: 1; }}
+        100% {{ background-position: 0% 50%; opacity: 1; }}
     }}
+    
+    [data-testid="stAppViewContainer"]::before {{
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(rgba(27, 94, 32, 0.75), rgba(13, 31, 13, 0.85)),
+                    url('{bg_images[0]}'),
+                    url('{bg_images[1]}'),
+                    url('{bg_images[2]}');
+        background-size: 120% 100%;
+        background-position: 0% 50%;
+        animation: manageSlideCarousel 21s ease-in-out infinite;
+    }}
+    
     [data-testid="stAppViewContainer"] {{
-        animation: manageBgCarousel 18s infinite;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        transition: background-image 1s ease-in-out;
+        position: relative;
+        background: transparent;
     }}
     </style>
     """
