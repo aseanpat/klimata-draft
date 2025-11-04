@@ -371,6 +371,7 @@ def build_dashboard(gdf, df2):
             fig.update_layout(xaxis_tickangle=-30)
             st.plotly_chart(fig, use_container_width=True)
 
+            amenity_data['Distance (km)'] = amenity_data['Distance (km)'].apply(lambda x: f"{x:.2f} km")
             st.dataframe(amenity_data)
         else:
             st.info("No amenity data available for this barangay.")
