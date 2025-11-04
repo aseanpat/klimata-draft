@@ -388,6 +388,11 @@ def show_login_page():
     .block-container {{
         max-width: 480px !important;
         padding-top: 8vh !important;
+        margin: 0 auto !important;
+    }}
+    
+    .main .block-container {{
+        max-width: 480px !important;
     }}
     
     div[data-testid="stVerticalBlock"] > div:first-child {{
@@ -514,6 +519,11 @@ def show_signup_page():
     .block-container {{
         max-width: 480px !important;
         padding-top: 6vh !important;
+        margin: 0 auto !important;
+    }}
+    
+    .main .block-container {{
+        max-width: 480px !important;
     }}
     
     div[data-testid="stVerticalBlock"] > div:first-child {{
