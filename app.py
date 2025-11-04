@@ -383,12 +383,11 @@ def build_dashboard(gdf, df2):
 def show_login_page():
     """Login page with carousel background"""
     
-    # Carousel background images
+    # Carousel background images from GitHub
     bg_images = [
-        "https://www.detourista.com/wp/wp-content/uploads/Tax-Place/Philippines/Iloilo/Iloilo/Featured/001-Calle-Real-in-Iloilo-City-150105-063819.jpg",
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/ff/86/7b/pictures-at-the-iloilo.jpg?w=1200&h=-1&s=1",
-        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200",
-        "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1200"
+        "https://raw.githubusercontent.com/aseanpat/klimata-draft/main/carousel_images/carousel%20slide%201.jpg",
+        "https://raw.githubusercontent.com/aseanpat/klimata-draft/main/carousel_images/carousel%20slide%202.jpg",
+        "https://raw.githubusercontent.com/aseanpat/klimata-draft/main/carousel_images/carousel%20slide%203.jpg"
     ]
     
     bg_urls = "', '".join(bg_images)
@@ -563,9 +562,9 @@ def show_signup_page():
 def show_manage_account_page():
     # Carousel background for Manage Account page
     bg_images = [
-        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/ff/86/7b/pictures-at-the-iloilo.jpg?w=1200&h=-1&s=1",
-        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200",
-        "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1200"
+        "https://raw.githubusercontent.com/aseanpat/klimata-draft/main/carousel%20slide%201.jpg",
+        "https://raw.githubusercontent.com/aseanpat/klimata-draft/main/carousel%20slide%202.jpg",
+        "https://raw.githubusercontent.com/aseanpat/klimata-draft/main/carousel%20slide%203.jpg"
     ]
     
     manage_bg = f"""
