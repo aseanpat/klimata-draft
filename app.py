@@ -372,105 +372,116 @@ def build_dashboard(gdf, df2):
 # PAGE FUNCTIONS
 # ==========================
 def show_login_page():
-    """Login page with carousel background"""
+    """Login page with enhanced UI"""
     
-    # Static background for login page
     page_bg_img = """
     <style>
     [data-testid="stAppViewContainer"] {
-        background: linear-gradient(rgba(27, 94, 32, 0.6), rgba(46, 125, 50, 0.7)),
+        background: linear-gradient(135deg, rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.8)),
                     url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        background-repeat: no-repeat;
     }
     
-    /* Hide header completely */
-    [data-testid="stHeader"] {{
-        display: none;
-    }}
+    [data-testid="stHeader"], [data-testid="stSidebar"] {{ display: none; }}
     
-    /* Hide sidebar on login page */
-    [data-testid="stSidebar"] {{
-        display: none;
-    }}
-    
-    /* Center the login form */
     .block-container {{
-        max-width: 500px !important;
-        padding-top: 5rem !important;
+        max-width: 480px !important;
+        padding-top: 8vh !important;
     }}
     
-    /* Glass effect card with green tint */
     div[data-testid="stVerticalBlock"] > div:first-child {{
-        background: rgba(232, 245, 233, 0.15);
-        padding: 3rem 2rem;
-        border-radius: 20px;
-        backdrop-filter: blur(12px);
-        border: 2px solid rgba(102, 187, 106, 0.3);
-        box-shadow: 0 8px 32px 0 rgba(27, 94, 32, 0.4);
+        background: rgba(255, 255, 255, 0.12);
+        padding: 3.5rem 2.5rem;
+        border-radius: 24px;
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(139, 195, 74, 0.4);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(76, 175, 80, 0.15);
     }}
     
-    /* Nature-themed title */
     h1 {{
-        color: #F1F8E9 !important;
+        color: #FFFFFF !important;
         text-align: center;
-        text-shadow: 2px 2px 8px rgba(27, 94, 32, 0.9);
-        font-weight: bold;
+        text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+        font-weight: 700;
+        font-size: 2rem !important;
+        margin-bottom: 0.5rem !important;
+        letter-spacing: 0.5px;
     }}
     
-    /* Style labels */
+    .subtitle {{
+        color: #C8E6C9;
+        text-align: center;
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+        text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+    }}
+    
     label {{
-        color: #F1F8E9 !important;
+        color: #FFFFFF !important;
         font-weight: 600;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        font-size: 0.95rem !important;
+        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+        margin-bottom: 0.5rem !important;
     }}
     
-    /* Style inputs */
     .stTextInput > div > div > input {{
-        background-color: rgba(232, 245, 233, 0.95);
-        border-radius: 8px;
-        border: 2px solid #66BB6A;
-        color: #1B5E20 !important;
-    }}
-    
-    /* Style error messages */
-    .stAlert {{
         background-color: rgba(255, 255, 255, 0.95) !important;
+        border-radius: 12px;
+        border: 2px solid rgba(139, 195, 74, 0.6);
+        color: #1B5E20 !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 1rem !important;
+        transition: all 0.3s ease;
     }}
     
-    /* Style buttons with green theme */
+    .stTextInput > div > div > input:focus {{
+        border-color: #7CB342 !important;
+        box-shadow: 0 0 0 3px rgba(124, 179, 66, 0.2) !important;
+    }}
+    
     .stButton > button {{
         width: 100%;
-        background-color: #4CAF50;
+        background: linear-gradient(135deg, #66BB6A, #4CAF50);
         color: white;
-        border-radius: 8px;
-        font-weight: 600;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1.05rem;
+        padding: 0.75rem 1.5rem;
         border: none;
-        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        transition: all 0.3s ease;
+        margin-top: 1rem;
     }}
     
     .stButton > button:hover {{
-        background-color: #388E3C;
-        box-shadow: 0 6px 16px rgba(56, 142, 60, 0.5);
+        background: linear-gradient(135deg, #4CAF50, #388E3C);
+        box-shadow: 0 8px 24px rgba(56, 142, 60, 0.5);
+        transform: translateY(-2px);
     }}
     
-    /* Style the divider */
     hr {{
-        border-color: rgba(102, 187, 106, 0.4);
+        border: none;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(139, 195, 74, 0.5), transparent);
+        margin: 2rem 0;
+    }}
+    
+    .stAlert {{
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        border-radius: 10px;
     }}
     </style>
     """
     
     st.markdown(page_bg_img, unsafe_allow_html=True)
-
-    # Login form content
-    st.title("KLIMATA: Climate Risk Assessment Portal")
+    st.title("KLIMATA")
+    st.markdown('<p class="subtitle">Climate Risk Assessment Portal</p>', unsafe_allow_html=True)
     
     with st.form("login_form"):
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
+        username = st.text_input("Username", placeholder="Enter your username")
+        password = st.text_input("Password", type="password", placeholder="Enter your password")
         submitted = st.form_submit_button("Log In")
 
         if submitted:
@@ -489,97 +500,108 @@ def show_login_page():
 
 
 def show_signup_page():
-    # Static background for signup page
     page_bg_img = """
     <style>
     [data-testid="stAppViewContainer"] {
-        background: linear-gradient(rgba(27, 94, 32, 0.6), rgba(46, 125, 50, 0.7)),
+        background: linear-gradient(135deg, rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.8)),
                     url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        background-repeat: no-repeat;
     }
     
-    /* Hide header completely */
-    [data-testid="stHeader"] {{
-        display: none;
-    }}
+    [data-testid="stHeader"], [data-testid="stSidebar"] {{ display: none; }}
     
-    /* Hide sidebar on signup page */
-    [data-testid="stSidebar"] {{
-        display: none;
-    }}
-    
-    /* Center the signup form */
     .block-container {{
-        max-width: 500px !important;
-        padding-top: 5rem !important;
+        max-width: 480px !important;
+        padding-top: 6vh !important;
     }}
     
-    /* Glass effect card with green tint */
     div[data-testid="stVerticalBlock"] > div:first-child {{
-        background: rgba(232, 245, 233, 0.15);
-        padding: 3rem 2rem;
-        border-radius: 20px;
-        backdrop-filter: blur(12px);
-        border: 2px solid rgba(102, 187, 106, 0.3);
-        box-shadow: 0 8px 32px 0 rgba(27, 94, 32, 0.4);
+        background: rgba(255, 255, 255, 0.12);
+        padding: 3.5rem 2.5rem;
+        border-radius: 24px;
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(139, 195, 74, 0.4);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(76, 175, 80, 0.15);
     }}
     
-    /* Nature-themed title */
     h1 {{
-        color: #F1F8E9 !important;
+        color: #FFFFFF !important;
         text-align: center;
-        text-shadow: 2px 2px 8px rgba(27, 94, 32, 0.9);
-        font-weight: bold;
+        text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+        font-weight: 700;
+        font-size: 1.9rem !important;
+        margin-bottom: 0.5rem !important;
+        letter-spacing: 0.5px;
     }}
     
-    /* Style labels */
+    .subtitle {{
+        color: #C8E6C9;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+    }}
+    
     label {{
-        color: #F1F8E9 !important;
+        color: #FFFFFF !important;
         font-weight: 600;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        font-size: 0.95rem !important;
+        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+        margin-bottom: 0.5rem !important;
     }}
     
-    /* Style inputs */
     .stTextInput > div > div > input {{
-        background-color: rgba(232, 245, 233, 0.95);
-        border-radius: 8px;
-        border: 2px solid #66BB6A;
-        color: #1B5E20 !important;
-    }}
-    
-    /* Style error messages */
-    .stAlert {{
         background-color: rgba(255, 255, 255, 0.95) !important;
+        border-radius: 12px;
+        border: 2px solid rgba(139, 195, 74, 0.6);
+        color: #1B5E20 !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 1rem !important;
+        transition: all 0.3s ease;
     }}
     
-    /* Style buttons with green theme */
+    .stTextInput > div > div > input:focus {{
+        border-color: #7CB342 !important;
+        box-shadow: 0 0 0 3px rgba(124, 179, 66, 0.2) !important;
+    }}
+    
     .stButton > button {{
         width: 100%;
-        background-color: #4CAF50;
+        background: linear-gradient(135deg, #66BB6A, #4CAF50);
         color: white;
-        border-radius: 8px;
-        font-weight: 600;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1.05rem;
+        padding: 0.75rem 1.5rem;
         border: none;
-        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        transition: all 0.3s ease;
+        margin-top: 1rem;
     }}
     
     .stButton > button:hover {{
-        background-color: #388E3C;
-        box-shadow: 0 6px 16px rgba(56, 142, 60, 0.5);
+        background: linear-gradient(135deg, #4CAF50, #388E3C);
+        box-shadow: 0 8px 24px rgba(56, 142, 60, 0.5);
+        transform: translateY(-2px);
+    }}
+    
+    .stAlert {{
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        border-radius: 10px;
     }}
     </style>
     """
     
     st.markdown(page_bg_img, unsafe_allow_html=True)
+    st.title("Create Account")
+    st.markdown('<p class="subtitle">Join KLIMATA to access climate risk data</p>', unsafe_allow_html=True)
     
-    st.title("Create a New Account")
     with st.form("signup_form"):
-        username = st.text_input("New Username")
-        password = st.text_input("New Password", type="password")
-        confirm_password = st.text_input("Confirm Password", type="password")
+        username = st.text_input("Username", placeholder="Choose a username")
+        password = st.text_input("Password", type="password", placeholder="Create a password")
+        confirm_password = st.text_input("Confirm Password", type="password", placeholder="Re-enter your password")
         submitted = st.form_submit_button("Create Account")
         if submitted:
             if not username or not password or not confirm_password:
@@ -593,7 +615,9 @@ def show_signup_page():
                     st.rerun()
                 else:
                     st.error("Username already exists.")
-    if st.button("Back to Login"):
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button("← Back to Login"):
         st.session_state.page = "Login"
         st.rerun()
 
