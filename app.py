@@ -134,8 +134,9 @@ def build_dashboard(gdf, df2):
     .stRadio > label {color: #FFFFFF !important; font-weight: 500 !important;}
     .stRadio > div {color: #FFFFFF !important;}
     .stSelectbox > label {color: #FFFFFF !important;}
-    .stSelectbox div[data-baseweb="select"] {background-color: #FFFFFF;}
-    .stSelectbox div[data-baseweb="select"] > div {color: #1a1a1a !important;}
+    .stSelectbox div[data-baseweb="select"] {background-color: #FFFFFF !important;}
+    .stSelectbox div[data-baseweb="select"] > div {color: #1a1a1a !important; background-color: #FFFFFF !important;}
+    .stSelectbox [data-baseweb="select"] span {color: #1a1a1a !important;}
     .stTextInput > label {color: #FFFFFF !important;}
     .stTextInput input {background-color: #FFFFFF; color: #1a1a1a !important;}
     </style>
