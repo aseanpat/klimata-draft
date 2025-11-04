@@ -489,6 +489,92 @@ def show_login_page():
 
 
 def show_signup_page():
+    # Static background for signup page
+    page_bg_img = """
+    <style>
+    [data-testid="stAppViewContainer"] {
+        background: linear-gradient(rgba(27, 94, 32, 0.6), rgba(46, 125, 50, 0.7)),
+                    url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+    
+    /* Hide header completely */
+    [data-testid="stHeader"] {{
+        display: none;
+    }}
+    
+    /* Hide sidebar on signup page */
+    [data-testid="stSidebar"] {{
+        display: none;
+    }}
+    
+    /* Center the signup form */
+    .block-container {{
+        max-width: 500px !important;
+        padding-top: 5rem !important;
+    }}
+    
+    /* Glass effect card with green tint */
+    div[data-testid="stVerticalBlock"] > div:first-child {{
+        background: rgba(232, 245, 233, 0.15);
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        border: 2px solid rgba(102, 187, 106, 0.3);
+        box-shadow: 0 8px 32px 0 rgba(27, 94, 32, 0.4);
+    }}
+    
+    /* Nature-themed title */
+    h1 {{
+        color: #F1F8E9 !important;
+        text-align: center;
+        text-shadow: 2px 2px 8px rgba(27, 94, 32, 0.9);
+        font-weight: bold;
+    }}
+    
+    /* Style labels */
+    label {{
+        color: #F1F8E9 !important;
+        font-weight: 600;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }}
+    
+    /* Style inputs */
+    .stTextInput > div > div > input {{
+        background-color: rgba(232, 245, 233, 0.95);
+        border-radius: 8px;
+        border: 2px solid #66BB6A;
+        color: #1B5E20 !important;
+    }}
+    
+    /* Style error messages */
+    .stAlert {{
+        background-color: rgba(255, 255, 255, 0.95) !important;
+    }}
+    
+    /* Style buttons with green theme */
+    .stButton > button {{
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    }}
+    
+    .stButton > button:hover {{
+        background-color: #388E3C;
+        box-shadow: 0 6px 16px rgba(56, 142, 60, 0.5);
+    }}
+    </style>
+    """
+    
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    
     st.title("Create a New Account")
     with st.form("signup_form"):
         username = st.text_input("New Username")
@@ -572,4 +658,3 @@ else:
         show_login_page()
     elif st.session_state.page == "Sign Up":
         show_signup_page()
-
