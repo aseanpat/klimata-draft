@@ -572,3 +572,4 @@ else:
         show_login_page()
     elif st.session_state.page == "Sign Up":
         show_signup_page()
+
