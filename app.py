@@ -135,6 +135,7 @@ def build_dashboard(gdf, df2):
         section[data-testid="stSidebar"] {background: #2d5016; color: #FFFFFF;}
         h1, h2, h3 {color: #FFFFFF !important;}
         .stRadio > label {color: #FFFFFF !important; font-weight: 500 !important;}
+        .stRadio > div {color: #FFFFFF !important;}
         </style>
         """, unsafe_allow_html=True)
         metric_style = dict(background_color="#2a3f2a", border_left_color="#7cb342", border_color="#558b2f")
@@ -148,6 +149,7 @@ def build_dashboard(gdf, df2):
         section[data-testid="stSidebar"] {background: #f1f8e9; color: #1a1a1a;}
         h1, h2, h3 {color: #1a1a1a !important;}
         .stRadio > label {color: #1a1a1a !important; font-weight: 500 !important;}
+        .stRadio > div {color: #1a1a1a !important;}
         p, span, div {color: #1a1a1a !important;}
         .stSelectbox label, .stTextInput label {color: #424242 !important;}
         </style>
@@ -194,6 +196,9 @@ def build_dashboard(gdf, df2):
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
+        }
+        [data-testid="stAppViewContainer"] h1 {
+            color: #FFFFFF !important;
         }
         </style>
         """
