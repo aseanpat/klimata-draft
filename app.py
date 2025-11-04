@@ -310,14 +310,7 @@ def build_dashboard(gdf, df2):
         st.title("Barangay Deep Dive")
         brgy_list = sorted(gdf['barangay_name'].dropna().unique())
 
-        search_query = st.sidebar.text_input("Search Barangay")
-        filtered_brgy_list = [b for b in brgy_list if search_query.lower() in b.lower()] if search_query else brgy_list
-
-        if len(filtered_brgy_list) == 0:
-            st.sidebar.warning("No barangay found. Try a different search.")
-            st.stop()
-
-        selected_brgy = st.sidebar.selectbox("Select a Barangay", filtered_brgy_list)
+        selected_brgy = st.sidebar.selectbox("Select a Barangay", brgy_list)
         brgy_data_rows = gdf[gdf['barangay_name'] == selected_brgy]
 
         if brgy_data_rows.empty:
