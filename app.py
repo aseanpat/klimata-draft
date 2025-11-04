@@ -128,7 +128,7 @@ def build_dashboard(gdf, df2):
     [data-testid="stHeader"] {background-color: #2d5016;}
     div[data-testid="stMetricValue"] {color: #a8d5a8 !important; font-size: 1.8rem !important; font-weight: 600 !important;}
     div[data-testid="stMetricLabel"] {color: #d4e8d4 !important; font-size: 1rem !important;}
-    section[data-testid="stSidebar"] {background: #2d5016; color: #FFFFFF;}
+    section[data-testid="stSidebar"] {background: #1f3a11; color: #FFFFFF;}
     h1, h2, h3 {color: #FFFFFF !important;}
     .stRadio > label {color: #FFFFFF !important; font-weight: 500 !important;}
     .stRadio > div {color: #FFFFFF !important;}
