@@ -216,7 +216,7 @@ def build_dashboard(gdf, df2):
         avg_wealth = gdf['rwi_mean'].mean()
 
         col1, col2, col3 = st.columns(3)
-        col1.metric("Average Urban Risk", f"{avg_risk:.2f}")
+        col1.metric("Climate Vulnerability Index", f"{avg_risk:.2f}")
         col2.metric("Average Infrastructure", f"{avg_infra:.2f}")
         col3.metric("Average Relative Wealth", f"{avg_wealth:.2f}")
         style_metric_cards(**metric_style, box_shadow=True)
@@ -380,120 +380,101 @@ def build_dashboard(gdf, df2):
 # PAGE FUNCTIONS
 # ==========================
 def show_login_page():
-    """Login page with enhanced UI"""
+    """Login page with GitHub-inspired minimal design"""
     
     page_bg_img = """
     <style>
-    [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.8)),
-                    url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
+    [data-testid="stAppViewContainer"] {{
+        background: #0d1117;
+    }}
     
     [data-testid="stHeader"], [data-testid="stSidebar"] {{ display: none; }}
     
     .block-container {{
-        max-width: 480px !important;
-        padding-top: 0 !important;
+        max-width: 340px !important;
+        padding: 0 !important;
         margin: 0 auto !important;
         display: flex !important;
         align-items: center !important;
         min-height: 100vh !important;
     }}
     
-    .main .block-container {{
-        max-width: 480px !important;
-    }}
-    
     div[data-testid="stVerticalBlock"] > div:first-child {{
-        background: rgba(255, 255, 255, 0.12);
-        padding: 3.5rem 2.5rem;
-        border-radius: 24px;
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(138, 191, 139, 0.4);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(138, 191, 139, 0.15);
+        background: #161b22;
+        padding: 2rem;
+        border-radius: 6px;
+        border: 1px solid #30363d;
+        width: 100%;
     }}
     
     h1 {{
-        color: #FFFFFF !important;
+        color: #c9d1d9 !important;
         text-align: center;
-        text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
-        font-weight: 700;
-        font-size: 2rem !important;
-        margin-bottom: 0.5rem !important;
-        letter-spacing: 0.5px;
-    }}
-    
-    .subtitle {{
-        color: #C8E6C9;
-        text-align: center;
-        font-size: 0.95rem;
-        margin-bottom: 2rem;
-        text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+        font-weight: 300;
+        font-size: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        letter-spacing: -0.5px;
     }}
     
     label {{
-        color: #FFFFFF !important;
+        color: #c9d1d9 !important;
         font-weight: 600;
-        font-size: 0.95rem !important;
-        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+        font-size: 0.875rem !important;
         margin-bottom: 0.5rem !important;
     }}
     
     .stTextInput > div > div > input {{
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 12px;
-        border: 2px solid rgba(138, 191, 139, 0.6);
-        color: #1B5E20 !important;
-        padding: 0.75rem 1rem !important;
-        font-size: 1rem !important;
-        transition: all 0.3s ease;
+        background-color: #0d1117 !important;
+        border-radius: 6px;
+        border: 1px solid #30363d;
+        color: #c9d1d9 !important;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.875rem !important;
     }}
     
     .stTextInput > div > div > input:focus {{
-        border-color: #8abf8b !important;
-        box-shadow: 0 0 0 3px rgba(138, 191, 139, 0.2) !important;
+        border-color: #58a6ff !important;
+        box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3) !important;
+        outline: none !important;
     }}
     
     .stButton > button {{
         width: 100%;
-        background: linear-gradient(135deg, #8abf8b, #6fa870);
+        background: #238636;
         color: white;
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 1.05rem;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        box-shadow: 0 6px 20px rgba(138, 191, 139, 0.4);
-        transition: all 0.3s ease;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(240, 246, 252, 0.1);
         margin-top: 1rem;
     }}
     
     .stButton > button:hover {{
-        background: linear-gradient(135deg, #6fa870, #5a8f5b);
-        box-shadow: 0 8px 24px rgba(111, 168, 112, 0.5);
-        transform: translateY(-2px);
-    }}
-    
-    hr {{
-        border: none;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(138, 191, 139, 0.5), transparent);
-        margin: 2rem 0;
+        background: #2ea043;
     }}
     
     .stAlert {{
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 10px;
+        background-color: #161b22 !important;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        color: #c9d1d9 !important;
+    }}
+    
+    .signup-link {{
+        text-align: center;
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        color: #58a6ff;
+        font-size: 0.875rem;
     }}
     </style>
     """
     
     st.markdown(page_bg_img, unsafe_allow_html=True)
-    st.title("KLIMATA")
-    st.markdown('<p class="subtitle">Climate Risk Assessment Portal</p>', unsafe_allow_html=True)
+    st.title("Sign in to KLIMATA")
     
     with st.form("login_form"):
         username = st.text_input("Username", placeholder="Enter your username")
@@ -509,8 +490,8 @@ def show_login_page():
             else:
                 st.error("User not known or password incorrect")
 
-    st.markdown("---")
-    if st.button("Need an account? Sign Up"):
+    st.markdown('<div class="signup-link">New to KLIMATA?</div>', unsafe_allow_html=True)
+    if st.button("Create an account"):
         st.session_state.page = "Sign Up"
         st.rerun()
 
@@ -518,109 +499,97 @@ def show_login_page():
 def show_signup_page():
     page_bg_img = """
     <style>
-    [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, rgba(27, 94, 32, 0.7), rgba(46, 125, 50, 0.8)),
-                    url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
+    [data-testid="stAppViewContainer"] {{
+        background: #0d1117;
+    }}
     
     [data-testid="stHeader"], [data-testid="stSidebar"] {{ display: none; }}
     
     .block-container {{
-        max-width: 480px !important;
-        padding-top: 0 !important;
+        max-width: 340px !important;
+        padding: 0 !important;
         margin: 0 auto !important;
         display: flex !important;
         align-items: center !important;
         min-height: 100vh !important;
     }}
     
-    .main .block-container {{
-        max-width: 480px !important;
-    }}
-    
     div[data-testid="stVerticalBlock"] > div:first-child {{
-        background: rgba(255, 255, 255, 0.12);
-        padding: 3.5rem 2.5rem;
-        border-radius: 24px;
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(138, 191, 139, 0.4);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(138, 191, 139, 0.15);
+        background: #161b22;
+        padding: 2rem;
+        border-radius: 6px;
+        border: 1px solid #30363d;
+        width: 100%;
     }}
     
     h1 {{
-        color: #FFFFFF !important;
+        color: #c9d1d9 !important;
         text-align: center;
-        text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
-        font-weight: 700;
-        font-size: 1.9rem !important;
-        margin-bottom: 0.5rem !important;
-        letter-spacing: 0.5px;
-    }}
-    
-    .subtitle {{
-        color: #C8E6C9;
-        text-align: center;
-        font-size: 0.9rem;
-        margin-bottom: 2rem;
-        text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+        font-weight: 300;
+        font-size: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        letter-spacing: -0.5px;
     }}
     
     label {{
-        color: #FFFFFF !important;
+        color: #c9d1d9 !important;
         font-weight: 600;
-        font-size: 0.95rem !important;
-        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+        font-size: 0.875rem !important;
         margin-bottom: 0.5rem !important;
     }}
     
     .stTextInput > div > div > input {{
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 12px;
-        border: 2px solid rgba(138, 191, 139, 0.6);
-        color: #1B5E20 !important;
-        padding: 0.75rem 1rem !important;
-        font-size: 1rem !important;
-        transition: all 0.3s ease;
+        background-color: #0d1117 !important;
+        border-radius: 6px;
+        border: 1px solid #30363d;
+        color: #c9d1d9 !important;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.875rem !important;
     }}
     
     .stTextInput > div > div > input:focus {{
-        border-color: #8abf8b !important;
-        box-shadow: 0 0 0 3px rgba(138, 191, 139, 0.2) !important;
+        border-color: #58a6ff !important;
+        box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3) !important;
+        outline: none !important;
     }}
     
     .stButton > button {{
         width: 100%;
-        background: linear-gradient(135deg, #8abf8b, #6fa870);
+        background: #238636;
         color: white;
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 1.05rem;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        box-shadow: 0 6px 20px rgba(138, 191, 139, 0.4);
-        transition: all 0.3s ease;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(240, 246, 252, 0.1);
         margin-top: 1rem;
     }}
     
     .stButton > button:hover {{
-        background: linear-gradient(135deg, #6fa870, #5a8f5b);
-        box-shadow: 0 8px 24px rgba(111, 168, 112, 0.5);
-        transform: translateY(-2px);
+        background: #2ea043;
     }}
     
     .stAlert {{
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 10px;
+        background-color: #161b22 !important;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        color: #c9d1d9 !important;
+    }}
+    
+    .signin-link {{
+        text-align: center;
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        color: #58a6ff;
+        font-size: 0.875rem;
     }}
     </style>
     """
     
     st.markdown(page_bg_img, unsafe_allow_html=True)
-    st.title("Create Account")
-    st.markdown('<p class="subtitle">Join KLIMATA to access climate risk data</p>', unsafe_allow_html=True)
+    st.title("Create your account")
     
     with st.form("signup_form"):
         username = st.text_input("Username", placeholder="Choose a username")
@@ -640,8 +609,8 @@ def show_signup_page():
                 else:
                     st.error("Username already exists.")
     
-    st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("← Back to Login"):
+    st.markdown('<div class="signin-link">Already have an account?</div>', unsafe_allow_html=True)
+    if st.button("Sign in"):
         st.session_state.page = "Login"
         st.rerun()
 
