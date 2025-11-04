@@ -198,7 +198,7 @@ def build_dashboard(gdf, df2):
         
         """)
         
-        st.image("https://raw.githubusercontent.com/aseanpat/klimata-draft/main/Home%20Page%20Iloilo.jpg", caption="Iloilo City", use_container_width=True)
+        st.image("https://raw.githubusercontent.com/aseanpat/klimata-draft/main/Home%20Page%20Iloilo.jpg", use_container_width=True)
     
     # =====================
     # City Overview
@@ -211,10 +211,10 @@ def build_dashboard(gdf, df2):
         )
 
         layer_config = {
-            "Urban Risk": {"col": "urban_risk_index", "color": "YlOrRd", "legend": "Urban Risk Index", "bg": "#2d1810", "accent": "#d9534f"},
-            "Population": {"col": "pop_total", "color": "Blues", "legend": "Population Total", "bg": "#0f1e2e", "accent": "#5b9bd5"},
-            "Amenity": {"col": "infra_index", "color": "Reds", "legend": "Amenity Index", "bg": "#2e1010", "accent": "#e74c3c"},
-            "Climate Exposure": {"col": "climate_exposure_score", "color": "Greens", "legend": "Climate Exposure Score", "bg": "#1a2e1a", "accent": "#8abf8b"},
+            "Urban Risk": {"col": "urban_risk_index", "color": "YlOrRd", "legend": "Urban Risk Index", "bg": "linear-gradient(135deg, #2d1810, #1a0f08)", "accent": "#d9534f"},
+            "Population": {"col": "pop_total", "color": "Blues", "legend": "Population Total", "bg": "linear-gradient(135deg, #0f1e2e, #081220)", "accent": "#5b9bd5"},
+            "Amenity": {"col": "infra_index", "color": "Reds", "legend": "Amenity Index", "bg": "linear-gradient(135deg, #2e1010, #1a0808)", "accent": "#e74c3c"},
+            "Climate Exposure": {"col": "climate_exposure_score", "color": "Greens", "legend": "Climate Exposure Score", "bg": "linear-gradient(135deg, #1a2e1a, #0d1a0d)", "accent": "#8abf8b"},
         }
         
         col_config = layer_config[selected_layer]
